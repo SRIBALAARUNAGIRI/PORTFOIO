@@ -1,0 +1,28 @@
+name: My GitHub Action
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: 23f3002987@ds.study.iitm.ac.in
+        run: |
+          echo "Hello, world!"
+          echo "This action is triggered by the GitHub Action and includes your email!"
+          
+      - name: Commit changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git commit -m "Added email step [skip ci]" || exit 0
+          git push
